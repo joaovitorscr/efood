@@ -8,6 +8,7 @@ export const Card = styled.div`
   margin-bottom: 32px;
   color: ${colors.darkBg};
   font-size: 14px;
+  margin-top: 56px;
 `
 
 export const CardContent = styled.div`
