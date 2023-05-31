@@ -25,11 +25,12 @@ export const CardTitle = styled.h3`
   padding-top: 8px;
 `
 
-export const CardDescription = styled.p`
+export const CardDescription = styled.h2`
   font-weight: 400;
   line-height: 22px;
   padding-top: 8px;
   padding-bottom: 8px;
+  font-size: 16px;
 `
 
 export const CardButton = styled.button`
