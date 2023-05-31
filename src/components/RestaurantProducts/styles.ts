@@ -1,10 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../styles'
 
-type Props = {
-  open: boolean
-}
-
 export const Card = styled.div`
   background-color: ${colors.salmon};
   width: 320px;
