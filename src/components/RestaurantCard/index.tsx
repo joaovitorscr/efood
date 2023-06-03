@@ -16,7 +16,7 @@ const RestaurantCard = ({
   <S.Card>
     <S.CardImg style={{ backgroundImage: `url(${capa})` }}>
       <S.CardInfoContainer>
-        {destacado ? <S.CardInfo>Destaque da semana</S.CardInfo> : <></>}
+        {destacado && <S.CardInfo>Destaque da semana</S.CardInfo>}
         <S.CardInfo>{tipo}</S.CardInfo>
       </S.CardInfoContainer>
     </S.CardImg>

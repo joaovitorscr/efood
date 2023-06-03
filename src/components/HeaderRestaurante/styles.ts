@@ -11,6 +11,15 @@ export const HeaderText = styled.p`
   color: ${colors.salmon};
   font-size: 18px;
   font-weight: 900;
+
+  button {
+    border: none;
+    background-color: transparent;
+    color: ${colors.salmon};
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+  }
 `
 
 export const Header = styled(Background)`

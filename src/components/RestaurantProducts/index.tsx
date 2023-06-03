@@ -1,72 +1,75 @@
 import { useState } from 'react'
 
+import { useDispatch } from 'react-redux'
+
 import { getDescription, parseToBrl } from '../../utils/index'
 
 import * as S from './styles'
 
 import close from '../../assets/images/close.svg'
+import { add, open } from '../../store/reducers/cart'
 
-type Props = {
-  img: string
-  title: string
-  description: string
-  portion: string
-  price: number
+export type Product = {
+  id: number
+  preco: number
+  porcao: string
+  descricao: string
+  foto: string
+  nome: string
 }
 
-const RestaurantProducts = ({
-  description,
-  img,
-  title,
-  portion,
-  price
-}: Props) => {
-  const [open, setOpen] = useState(false)
+type Props = {
+  product: Product
+}
 
-  function handleModal() {
-    setOpen(true)
+const RestaurantProducts = ({ product }: Props) => {
+  const [openModal, setOpenModal] = useState(false)
+
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(add(product))
+    setOpenModal(false)
+    dispatch(open())
   }
 
   return (
     <>
       <S.Card>
         <S.CardContent>
-          <img src={img} alt={title} />
-          <S.CardTitle>{title}</S.CardTitle>
+          <img src={product.foto} alt={product.nome} />
+          <S.CardTitle>{product.nome}</S.CardTitle>
           <S.CardDescription>
-            {getDescription(description, 110)}
+            {getDescription(product.descricao, 110)}
           </S.CardDescription>
-          <S.CardButton type="button" onClick={handleModal}>
+          <S.CardButton type="button" onClick={() => setOpenModal(true)}>
             Mais detalhes
           </S.CardButton>
         </S.CardContent>
       </S.Card>
 
-      {open ? (
+      {openModal && (
         <S.Modal>
           <S.ModalContent>
-            <img src={img} alt={title} />
+            <img src={product.foto} alt={product.nome} />
             <S.OpenCardInfo>
               <div>
-                <S.CardTitle>{title}</S.CardTitle>
-                <button type="button" onClick={() => setOpen(false)}>
+                <S.CardTitle>{product.nome}</S.CardTitle>
+                <button type="button" onClick={() => setOpenModal(false)}>
                   <img src={close} alt="Close" title="Close" />
                 </button>
               </div>
               <S.CardDescription>
-                {description}
-                <p>Serve: de {portion}</p>
+                {product.descricao}
+                <p>Serve: de {product.porcao}</p>
               </S.CardDescription>
-
-              <S.CardButton type="button">
-                Adicionar ao carrinho - {parseToBrl(price)}
+              <S.CardButton type="button" onClick={addToCart}>
+                Adicionar ao carrinho - {parseToBrl(product.preco)}
               </S.CardButton>
             </S.OpenCardInfo>
           </S.ModalContent>
-          <div className="overlay" onClick={() => setOpen(false)} />
+          <div className="overlay" onClick={() => setOpenModal(false)} />
         </S.Modal>
-      ) : (
-        <></>
       )}
     </>
   )

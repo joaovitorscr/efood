@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-
 import { getDescription } from '../../utils/index'
-import { Restaurant } from '../../App'
+import { useGetRestaurantListQuery } from '../../services/api'
 
 import { CardList } from './styles'
 
@@ -9,13 +7,11 @@ import RestaurantCard from '../../components/RestaurantCard'
 import Header from '../../components/Header'
 
 const Home = () => {
-  const [restaurant, setRestaurant] = useState<Restaurant[]>([])
+  const { data: restaurant } = useGetRestaurantListQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((response) => response.json())
-      .then((response) => setRestaurant(response))
-  })
+  if (!restaurant) {
+    return <h3>Carregando...</h3>
+  }
 
   return (
     <>
