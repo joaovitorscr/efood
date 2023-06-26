@@ -39,6 +39,10 @@ export const Sidebar = styled.div`
     color: ${colors.darkBg};
     font-weight: bold;
   }
+
+  h3 {
+    color: ${colors.darkBg};
+  }
 `
 
 export const CartItem = styled.div`
@@ -49,6 +53,10 @@ export const CartItem = styled.div`
   padding: 8px 8px 12px 8px;
   height: 100px;
   color: ${colors.salmon};
+
+  h3 {
+    color: ${colors.salmon};
+  }
 
   img {
     width: 80px;
@@ -92,4 +100,54 @@ export const DeliverButton = styled.button`
   padding: 8px 16px;
   width: 100%;
   cursor: pointer;
+`
+
+export const CustomForm = styled.div`
+  color: ${colors.darkBg};
+  margin-top: 16px;
+
+  label,
+  input {
+    margin-bottom: 8px;
+  }
+
+  input {
+    background-color: ${colors.darkBg};
+    border: none;
+    padding: 8px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+  }
+
+  .flexContainer {
+    display: flex;
+    flex-direction: row;
+
+    input {
+      max-width: 155px;
+      margin-right: 34px;
+    }
+  }
+
+  ${DeliverButton} {
+    margin-bottom: 8px;
+  }
+`
+
+export const CheckoutContainer = styled.div`
+  div {
+    margin-top: 16px;
+  }
+
+  p {
+    font-weight: 400;
+  }
+
+  ${DeliverButton} {
+    margin-top: 24px;
+  }
 `
