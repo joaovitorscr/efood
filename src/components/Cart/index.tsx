@@ -36,8 +36,8 @@ const Cart = () => {
       address: Yup.string().required('O campo é obrigatório'),
       city: Yup.string().required('O campo é obrigatório'),
       cep: Yup.string()
-        .min(14, 'O campo precisa ter 14 caracteres')
-        .max(15, 'O campo precisa ter 14 caracteres')
+        .min(8, 'O campo precisa ter 8 caracteres')
+        .max(8, 'O campo precisa ter 8 caracteres')
         .required('O campo é obrigatório'),
       houseNumber: Yup.string().required('O campo é obrigatório'),
       complement: Yup.string().min(
@@ -103,7 +103,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (!isSuccess) {
-      dispatch(clear()), setCheckout(true)
+      setCheckout(true)
     }
   }, [isSuccess, dispatch])
 
@@ -136,7 +136,16 @@ const Cart = () => {
                 gastronômica. Bom apetite!
               </p>
             </div>
-            <S.DeliverButton onClick={closeCart}>Concluir</S.DeliverButton>
+            <S.DeliverButton
+              onClick={() => [
+                setCheckout(false),
+                setCartScreen(true),
+                dispatch(clear()),
+                closeCart()
+              ]}
+            >
+              Concluir
+            </S.DeliverButton>
           </S.CheckoutContainer>
         ) : (
           <>
@@ -278,6 +287,7 @@ const Cart = () => {
                         <S.DeliverButton
                           onClick={() => setFormScreen(1)}
                           type="button"
+                          disabled={form.isValid}
                         >
                           Continuar com o pagamento
                         </S.DeliverButton>

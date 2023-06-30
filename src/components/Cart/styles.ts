@@ -115,6 +115,10 @@ export const CustomForm = styled.div`
     background-color: ${colors.darkBg};
     border: none;
     padding: 8px;
+
+    &.error {
+      border: 4px solid darkred;
+    }
   }
 
   div {
